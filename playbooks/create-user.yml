@@ -1,0 +1,23 @@
+---
+
+- name: creating user 
+  hosts: all
+  become: yes #we use when we r exectuting pb as a user {sudo privilages}
+
+  tasks:
+  - name: rahul
+    user: name=rahul state=present
+
+  - name: javeed
+    user: name=javeed state=present
+
+  - name: user venky
+    user: name=venky state=present
+
+
+    
+      
+      
+    
+    
+

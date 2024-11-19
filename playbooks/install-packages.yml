@@ -1,0 +1,36 @@
+---
+- name: install packages
+  hosts: all		# webservers[2]
+		         #webservers[1]:databaseserver[2]				 
+  become: yes
+  
+
+  tasks: 
+  - name: httpd install 
+    yum:
+      name: httpd
+      state: present
+  when: ansible_os_family == "RedHat"
+  notify: start service         #tag name shd be match with service display #name
+
+  handlers:
+  - name: start service
+    service:
+      name: httpd
+      state: present
+    when: ansible_os_family == "RedHat"
+    
+  tasks:
+  - name: install apache
+    yum:
+      name: apache2
+      state: present
+  when: ansible_os_family == "Debian"
+  notify: start service apache
+
+  handlers:
+  - name: start service apache
+    service:
+      name: apache2
+      state: present
+  #when: ansible_os_family == "Debian"      

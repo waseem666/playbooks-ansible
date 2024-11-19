@@ -1,0 +1,37 @@
+---
+- name: uninstall packages
+  hosts: all
+  become: all
+
+
+
+
+  handlers:
+  - name: stop service httpd
+    service:
+        name: httpd
+        state: absent #uninstall
+  when: ansible_os_family == "Redhat"
+  notify: httpd
+  
+
+  - name: stop apache
+    service:
+      name: apache
+      state: absent
+    when: ansible_os_family == "Debian"
+    notify: apche
+
+    task:
+    - name: httpd
+      yum:
+        name: httpd
+        state: absent #uninstall
+    when: ansible_os_family == "RedHat"
+
+    - name: apche
+      apt:
+        name: apache2
+        state: absent
+    when: ansible_os_family == "Debian"
+

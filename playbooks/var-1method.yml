@@ -1,0 +1,26 @@
+---
+- name: variables 1st method by b & c
+  hosts: all
+  become: yes
+
+  vars:
+    a=tree
+    b=waseem
+    c=done
+
+  tasks:
+  - name: install a by b and c
+    yum:
+      name: a
+      state: present
+    
+  - name: creating dir 
+    file:
+      path: /root/devops1/devops2
+      state: directory
+
+  - name: creating file
+    file: 
+     path: /root/devop1/file55
+     state: touch
+

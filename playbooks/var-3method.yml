@@ -1,0 +1,11 @@
+---
+- name: 3rd method of giving varible from outside of file
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: user
+    user:
+      name: fatima
+      state: present # ansible-playbook var-3method --extra-vars "user=fatima-zehra"
+

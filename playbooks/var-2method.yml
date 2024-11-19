@@ -1,0 +1,20 @@
+---
+- name: 2nd method varibale
+  hosts: all
+  become: yes
+
+  vars_file:
+  - user.txt  #first create file user.txt
+  - git-tree.yml  #write tree & git in file
+
+  tasks:
+  - name: using variable method 2
+    user: 
+      name: "{{ user1} {{user2}}"
+
+  - name: install tree git
+    yum:
+      name: ['g', 't']
+      state: install
+
+

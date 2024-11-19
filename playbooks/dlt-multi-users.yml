@@ -1,0 +1,13 @@
+---
+- name: dlt useres in node1
+  hosts: webserver[0]
+  become: yes
+
+  tasks:
+  - name: dlt users
+    user: "{{ item }}" state=absent
+    with_items:
+    	- raj
+	- harsha
+	- saidemy
+

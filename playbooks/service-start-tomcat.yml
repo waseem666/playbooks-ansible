@@ -1,0 +1,25 @@
+---
+- name: service start tomcat
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: permission for execution of file 
+    file:
+      path: /opt/tomcatdir.bin#
+      mode: 0711
+
+  - name: run .sh file
+    shell: /opt/tomcatdir/ bin#/startup.sh
+    
+
+    # - name: stop service
+    #   shell: /opt/tomcatdir/shutdown.sh
+    #
+    #   - name: start service
+    #     shell: nohup ./startup.sh
+    #     agrs:
+    #       chdir: /opt/tomcatdir/shutdown.sh
+    #
+
+    
